@@ -1,0 +1,28 @@
+<div id="wallet-buttons" class="nav-buttons">
+    <button id="open-walletselector-button">Connect Wallet</button>
+    <div id="wallet-details" style="display: none">
+        <script>
+            function updateWalletUI(accountId) {
+                const walletButtons = document.getElementById('wallet-buttons');
+                const connectButton = document.getElementById('open-walletselector-button');
+                const walletDetails = document.getElementById('wallet-details');
+                
+                if (accountId) {
+                    connectButton.style.display = 'none';
+                    walletDetails.style.display = 'flex';
+                    walletDetails.innerHTML = `
+                        <button id="logout-button" class="wallet-button">
+                            ${accountId} - Logout
+                        </button>
+                    `;
+                } else {
+                    connectButton.style.display = 'block';
+                    walletDetails.style.display = 'none';
+                }
+            }
+            
+            // Expose the function globally so wallet.js can access it
+            window.updateWalletUI = updateWalletUI;
+        </script>
+    </div>
+</div>
